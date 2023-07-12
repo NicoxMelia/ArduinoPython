@@ -3,6 +3,6 @@ from tkinter import *
 
 class State(ABC):
     @abstractmethod
-    def drawPicture():
+    def drawPicture(self, frame):
         pass
     

@@ -4,6 +4,7 @@ from threading import Thread
 
 root = Tk()
 root.title("Python RFID")
+root.geometry("640x480")
 frame = Frame(root)
 frame.pack()
 frame.config(width="1920", height="1080")

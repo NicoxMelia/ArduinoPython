@@ -1,6 +1,6 @@
 import serial
 import serial.tools.list_ports
-from state import NormalState, MoonState
+from state import NormalState, MoonState, SaturnoState
 
 
 class Loader():
@@ -18,8 +18,6 @@ class Loader():
         self.container = container
         self.state = NormalState.NormalState()
         self.state.drawPicture(self.container)
-        # self.imagen = tkinter.PhotoImage(file="moon3.png")
-        # tkinter.Label(self.container, image=self.imagen).place(x="0", y="0")
         
     def read(self):
         try:
@@ -30,6 +28,11 @@ class Loader():
                     case "b'moon'":
                         self.changeState(MoonState.MoonState())
                         self.draw()
+                        
+                    case "b'saturno'":
+                        self.changeState(SaturnoState.SaturnoState())
+                        self.draw()
+                
                         
         except Exception:
             print("Arduino desconectado")
