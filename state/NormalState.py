@@ -2,7 +2,7 @@ from .State import *
 
 class NormalState(State):
     def drawPicture(self, frame):
-        # imagen = PhotoImage(file=source)
+        # imagen = PhotoImage(file="moon3.png")
         # Label(frame, image=imagen).place(x="0", y="0")
         self.drawText(frame)
         
