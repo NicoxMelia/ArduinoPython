@@ -6,8 +6,8 @@ from state import NormalState, MoonState, SaturnoState
 class Loader():
     def __init__(self, container):
         self.ports = list(serial.tools.list_ports.comports())
-        for index in self.ports:
-            self.puerto = self.ports[index].name
+        for port in self.ports:
+            self.puerto = port.name
             print("puerto elegido", self.puerto)
             try:
                 print("PROBANDO VERSION LINUX...")
