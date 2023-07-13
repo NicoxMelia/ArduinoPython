@@ -6,17 +6,16 @@ from state import NormalState, MoonState, SaturnoState
 class Loader():
     def __init__(self, container):
         self.ports = list(serial.tools.list_ports.comports())
-        for port in self.ports:
-            self.puerto = port.name
-            print("puerto elegido", self.puerto)
+        for arduinoPort in self.ports:
+            print("puerto elegido", arduinoPort.name)
             try:
                 print("PROBANDO VERSION LINUX...")
-                self.arduino = serial.Serial(port="/dev/" + self.puerto, baudrate=9600, timeout=1)
+                self.arduino = serial.Serial(port="/dev/" + self.ports[0].name, baudrate=9600, timeout=1)
                 self.arduino.write(b'k')
                 
             except Exception:
                 print("PROBANDO VERSION WINDOWS...")
-                self.arduino = serial.Serial(port=self.puerto, baudrate=9600, timeout=1)
+                self.arduino = serial.Serial(port=arduinoPort.name, baudrate=9600, timeout=1)
                 self.arduino.write(b'k')
 
         
