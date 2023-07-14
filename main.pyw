@@ -4,10 +4,10 @@ from threading import Thread
 
 root = Tk()
 root.title("Python RFID")
-root.geometry("640x480")
+# root.geometry("640x480")
 frame = Frame(root)
-frame.pack()
-frame.config(width="1920", height="1080")
+frame.pack(fill="both", expand="True")
+frame.config(width="640", height="480")
 loader = loader.Loader(frame)
 loaderThread = Thread(target=loader.read)
 loaderThread.start()
