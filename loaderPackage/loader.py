@@ -1,6 +1,7 @@
 import serial
 import serial.tools.list_ports
 from state import NormalState, MoonState, SaturnoState
+import time
 
 
 class Loader():
@@ -10,13 +11,19 @@ class Loader():
             print("puerto elegido", arduinoPort.name)
             try:
                 print("PROBANDO VERSION LINUX...")
-                self.arduino = serial.Serial(port="/dev/" + self.ports[0].name, baudrate=9600, timeout=1)
+                self.arduino = serial.Serial(port="/dev/" + arduinoPort.name, baudrate=9600, timeout=0.1)
+                time.sleep(2)
                 self.arduino.write(b'k')
+                if(self.arduino.readline() == "OK"):
+                    break
                 
             except Exception:
                 print("PROBANDO VERSION WINDOWS...")
                 self.arduino = serial.Serial(port=arduinoPort.name, baudrate=9600, timeout=1)
+                time.sleep(2)
                 self.arduino.write(b'k')
+                if(self.arduino.readline() == "OK"):
+                    break
 
         
         
