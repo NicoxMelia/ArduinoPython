@@ -54,8 +54,9 @@ class Loader():
                         self.draw()
                 
                         
-        except Exception:
+        except TypeError:
             print("Arduino desconectado")
+        except serial.SerialException:
             self.changeState(ErrorState.ErrorState())
             self.draw()
 

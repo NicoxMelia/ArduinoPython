@@ -12,6 +12,7 @@ MFRC522 mfrc522(SS_PIN, RST_PIN);  // Create MFRC522 instance
 LiquidCrystal_I2C lcd(0x27,2,1,0,4,5,6,7);
 
 String code;
+boolean conected = false;
 
 
 String getUid(byte *buffer, byte bufferSize) {
@@ -43,6 +44,7 @@ void setup() {
       Serial.println(letra);
       if(letra == 'k'){
         Serial.println("OK");
+        conected = true;
         break;
       }
     }
@@ -62,7 +64,8 @@ void setup() {
 }
 
 void loop() {
-	if (mfrc522.PICC_IsNewCardPresent()) {
+  if(conected){
+    if (mfrc522.PICC_IsNewCardPresent()) {
     if (mfrc522.PICC_ReadCardSerial()) {
        // mfrc522.PICC_DumpToSerial(&(mfrc522.uid));
       code = getUid(mfrc522.uid.uidByte, mfrc522.uid.size);
@@ -71,11 +74,15 @@ void loop() {
         mfrc522.PICC_HaltA();
     }
   }
-  if(Serial.available()){
-    char letra = Serial.read();
-    if(letra == 'd'){
-      lcd.setCursor(0, 0);
-      lcd.print("DISCONECTED...");
+    if(Serial.available()){
+      char letra = Serial.read();
+      if(letra == 'd'){
+        lcd.setCursor(0, 0);
+        conected = false;
+      }
     }
+  }else{
+    lcd.print("DISCONECTED...");
   }
+	
 }
