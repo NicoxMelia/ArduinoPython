@@ -19,7 +19,7 @@ class Loader():
                 
             except Exception:
                 print("PROBANDO VERSION WINDOWS...")
-                self.arduino = serial.Serial(port=arduinoPort.name, baudrate=9600, timeout=1)
+                self.arduino = serial.Serial(port=arduinoPort.name, baudrate=9600, timeout=0.1)
                 time.sleep(2)
                 self.arduino.write(b'k')
                 if(self.arduino.readline() == "OK"):
