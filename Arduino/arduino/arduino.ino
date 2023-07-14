@@ -71,4 +71,11 @@ void loop() {
         mfrc522.PICC_HaltA();
     }
   }
+  if(Serial.available()){
+    char letra = Serial.read();
+    if(letra == 'd'){
+      lcd.setCursor(0, 0);
+      lcd.print("DISCONECTED...");
+    }
+  }
 }

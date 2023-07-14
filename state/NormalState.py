@@ -5,5 +5,5 @@ class NormalState():
         self.drawText(frame)
         
     def drawText(self, frame):
-        text = Label(frame, text="Inserte una tarjeta...")
+        text = Label(frame, text="Insert an RFID card...")
         text.place(x="100", y="100")
