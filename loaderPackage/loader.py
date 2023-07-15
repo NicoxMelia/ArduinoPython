@@ -19,6 +19,8 @@ class Loader():
                 self.arduino.write(b'k')
                 if(self.arduino.readline() == "OK"):
                     break
+                else:
+                    self.arduino = None
             except Exception:
                 print("PROBANDO VERSION WINDOWS...")
                 self.arduino = serial.Serial(port=arduinoPort.name, baudrate=9600, timeout=0.1)
@@ -26,6 +28,8 @@ class Loader():
                 self.arduino.write(b'k')
                 if(self.arduino.readline() == "OK"):
                     break
+                else:
+                    self.arduino = None
 
         
         
@@ -56,12 +60,18 @@ class Loader():
                         
         except TypeError:
             print("Arduino desconectado")
-        except serial.SerialException:
+        except (serial.SerialException or AttributeError):
+            self.changeState(ErrorState.ErrorState())
+            self.draw()
+        except AttributeError:
             self.changeState(ErrorState.ErrorState())
             self.draw()
 
     def leave(self):
-        self.arduino.close()
+        try:
+            self.arduino.close()
+        except AttributeError:
+            print("ERROR, THERE ARENT ANY PORTS BEING USED")
     def changeState(self, newState):
         self.state = newState
     def draw(self):
