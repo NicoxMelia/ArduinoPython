@@ -14,14 +14,16 @@ class Loader():
             try:
                 print("PROBANDO VERSION LINUX...")
                 os.system("sudo chmod a+rw /dev/ttyACM0")
-                if(arduinoPort.manufacturer == "Arduino (www.arduino.cc)"):
+                if(arduinoPort.manufacturer == "Arduino (www.arduino.cc)" or arduinoPort.manufacturer == "Arduino LLC (www.arduino.cc)"):
                     self.arduino = serial.Serial(port="/dev/" + arduinoPort.name, baudrate=9600, timeout=0.1)
                     time.sleep(2)
                     self.arduino.write(b'k')
             except Exception:
                 print("PROBANDO VERSION WINDOWS...")
-                if(arduinoPort.manufacturer == "Arduino (www.arduino.cc)"):
-                    self.arduino = serial.Serial(port="/dev/" + arduinoPort.name, baudrate=9600, timeout=0.1)
+                if(arduinoPort.manufacturer == "Arduino (www.arduino.cc)" or arduinoPort.manufacturer == "Arduino LLC (www.arduino.cc)"):
+                    self.arduino = serial.Serial(port= arduinoPort.name, baudrate=9600, timeout=0.1)
+                    time.sleep(2)
+                    self.arduino.write(b'k')
         
         
         self.container = container
