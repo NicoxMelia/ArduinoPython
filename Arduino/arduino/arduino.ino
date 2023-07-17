@@ -82,6 +82,7 @@ void loop() {
       }
     }
   }else{
+    lcd.setCursor(0, 0);
     lcd.print("DISCONECTED...");
   }
 	
