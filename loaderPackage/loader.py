@@ -1,6 +1,6 @@
 import serial
 import serial.tools.list_ports
-from state import NormalState, MoonState, SaturnoState, ErrorState
+from state import NormalState, Tarjeta1State, Tarjeta2State, ErrorState
 import time
 import os
 
@@ -42,12 +42,21 @@ class Loader():
                 dato = str(self.arduino.readline().strip())
                 print(dato)
                 match dato:
-                    case "b'moon'":
-                        self.changeState(MoonState.MoonState())
+                    case "b'411322588'":
+                        self.changeState(Tarjeta1State.Tarjeta1State())
                         self.draw()
                         
-                    case "b'saturno'":
-                        self.changeState(SaturnoState.SaturnoState())
+                    case "b'24524331161'":
+                        self.changeState(Tarjeta2State.Tarjeta2State())
+                        self.draw()
+                    case "b'5123617912'":
+                        self.changeState()#cambiar
+                        self.draw()
+                    case "b'41150255238'":
+                        self.changeState()#cambiar
+                        self.draw()
+                    case "b'13524232180'":
+                        self.changeState()#cambiar
                         self.draw()
                 
                         

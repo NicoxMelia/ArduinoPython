@@ -70,7 +70,8 @@ void loop() {
        // mfrc522.PICC_DumpToSerial(&(mfrc522.uid));
       code = getUid(mfrc522.uid.uidByte, mfrc522.uid.size);
        lcd.clear();
-       comparar(code);
+       Serial.println(code);
+       //comparar(code);
         mfrc522.PICC_HaltA();
     }
   }
