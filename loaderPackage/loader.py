@@ -1,9 +1,9 @@
 import serial
 import serial.tools.list_ports
-from state import NormalState, Tarjeta1State, Tarjeta2State, ErrorState
+from state import NormalState, Tarjeta1State, Tarjeta2State, ErrorState, Tarjeta3State
+from state import Tarjeta4State, Tarjeta5State
 import time
 import os
-
 
 class Loader():
     def __init__(self, container):
@@ -50,13 +50,13 @@ class Loader():
                         self.changeState(Tarjeta2State.Tarjeta2State())
                         self.draw()
                     case "b'5123617912'":
-                        self.changeState()#cambiar
+                        self.changeState(Tarjeta3State.Tarjeta3State())
                         self.draw()
                     case "b'41150255238'":
-                        self.changeState()#cambiar
+                        self.changeState(Tarjeta4State.Tarjeta4State())
                         self.draw()
                     case "b'13524232180'":
-                        self.changeState()#cambiar
+                        self.changeState(Tarjeta5State.Tarjeta5State())
                         self.draw()
                 
                         
