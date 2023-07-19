@@ -55,7 +55,7 @@ class Loader():
                     case "b'41150255238'":
                         self.changeState(Tarjeta4State.Tarjeta4State())
                         self.draw()
-                    case "b'13524232180'":
+                    case "b'17818721528'":
                         self.changeState(Tarjeta5State.Tarjeta5State())
                         self.draw()
                 

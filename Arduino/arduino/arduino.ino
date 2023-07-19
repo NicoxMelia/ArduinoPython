@@ -72,6 +72,7 @@ void loop() {
        lcd.clear();
        Serial.println(code);
        //comparar(code);
+       tone(3, 3000, 300);
         mfrc522.PICC_HaltA();
     }
   }
